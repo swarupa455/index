@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Platform</title>
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --secondary: #2196F3;
+            --accent: #FF5722;
+            --background: #f5f5f5;
+        }
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(' https://cdn.dribbble.com/users/5699335/screenshots/17211887/e-learning_4x.jpg');
+            background-size:cover; 
+            background-attachment: fixed;
+            color:black;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 1rem;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .course-card {
+            background:lightcyan;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-content {
+            display: none;
+        }
+
+        .course-content.active {
+            display: block;
+        }
+
+        .video-grid {
+            display: grid;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .quiz-section {
+            background:lightblue;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .quiz-question {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: whitesmoke;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary);
+        }
+
+        .progress-bar {
+            background: #ddd;
+            height: 20px;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: var(--primary);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+            
+            
+        }
+        footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+      background-color: aqua;
+    }
+    
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <h1>E-Learning Platform</h1>
+            <div class="nav-links">
+                <a href="#home" onclick="showSection('home')">Home</a>
+                <a href="#courses" onclick="showSection('courses')">Courses</a>
+                <a href="#quiz" onclick="showSection('quiz')">Quiz</a>
+                <a href="#progress" onclick="showSection('progress')">Progress Tracker</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="home" class="section">
+            <h2 style="color:palevioletred ; font-size: 50px;">Welcome to E-Learning Platform</h2>
+            <p style="color:aqua; font-size:20px;">Start your learning journey with our comprehensive courses.</p>
+        </section>
+
+        <section id="courses" class="section" style="display: none;">
+            <h2 style="font-size: 30px; color: palegreen;">Available Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card" onclick="showCourseContent('java')">
+                    <img src="C:\Users\Swaru\Downloads\j1.jpg" alt="Course 2" style="width: 300px; height: auto; margin: 10px;">
+                    <h3>Java Programming</h3>
+                    <p>Learn core Java concepts and OOP</p>
+                </div>
+                <div class="course-card" onclick="showCourseContent('python')">
+                    <img src="C:\Users\Swaru\Downloads\py.jpg" alt="Course 4" style="width: 300px; height: auto; margin: 10px;">
+                    <h3>Python</h3>
+                    <p>Master Python programming fundamentals</p>
+                </div>
+                <div class="course-card" onclick="showCourseContent('cpp')">
+                    <img src="C:\Users\Swaru\Downloads\c+.jpg"alt="Course 4" style="width: 300px; height: auto; margin: 10px;">
+                    <h3>C++</h3>
+                    <p>Learn C++ from basics to advanced</p>
+                </div>
+                <div class="course-card" onclick="showCourseContent('mysql')">
+                    <img src="C:\Users\Swaru\Downloads\mysql.jpg"alt="Course 4" style="width: 300px; height: auto; margin: 10px;">
+                    <h3>MySQL</h3>
+                    <p>Database management with MySQL</p>
+                </div>
+                <div class="course-card" onclick="showCourseContent('fullstack')">
+                    <img src="C:\Users\Swaru\Downloads\fullstack.jpg"alt="Course 4" style="width: 300px; height: auto; margin: 10px;">
+                    <h3>Full Stack Development</h3>
+                    <p>Complete web development course</p>
+                </div>
+                <div class="course-card" onclick="showCourseContent('django')">
+                    <img src="C:\Users\Swaru\Downloads\dj.jpg"alt="Course 4" style="width: 300px; height: auto; margin: 10px;">
+                    <h3>Django</h3>
+                    <p>Build web applications with Django</p>
+                </div>
+
+                </div>
+        </section>
+
+        <section id="quiz" class="section" style="display: none;">
+            <h2>Course Quizzes</h2>
+            <select id="quizSelector" onchange="loadQuiz()" class="submit-btn">
+                <option value="">Select a course</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+                <option value="cpp">C++</option>
+                <option value="mysql">MySQL</option>
+                <option value="fullstack">Full Stack</option>
+                <option value="django">Django</option>
+            </select>
+            <div id="quizContent" class="quiz-section"></div>
+        </section>
+
+        <section id="progress" class="section" style="display: none;">
+            <h2>Your Progress</h2>
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            <div id="progressStats"></div>
+        </section>
+    </div>
+
+    <script>
+        const courseVideos = {
+            java: [
+                "https://www.youtube.com/embed/eIrMbAQSU34",
+                "https://www.youtube.com/embed/RRubcjpTkks"
+            ],
+            python: [
+                "https://www.youtube.com/embed/kqtD5dpn9C8",
+                "https://www.youtube.com/embed/_uQrJ0TkZlc"
+            ],
+            cpp: [
+                "https://www.youtube.com/embed/vLnPwxZdW4Y",
+                "https://www.youtube.com/embed/ZzaPdXTrSb8"
+            ],
+            mysql: [
+                "https://www.youtube.com/embed/7S_tz1z_5bA",
+                "https://www.youtube.com/embed/HXV3zeQKqGY"
+            ],
+            fullstack: [
+                "https://www.youtube.com/embed/nu_pCVPKzTk",
+                "https://www.youtube.com/embed/mU6anWqZJcc"
+            ],
+            django: [
+                "https://www.youtube.com/embed/F5mRW0jo-U4",
+                "https://www.youtube.com/embed/PtQiiknWUcI"
+            ]
+        };
+        const quizzes = {
+            java: [
+                { question: "What is a JVM?", options: ["Java Virtual Machine", "Java Visual Machine", "Java Version Manager", "Java Virtual Memory"] },
+                { question: "Which keyword is used for inheritance?", options: ["extends", "implements", "inherits", "super"] },
+                { question: "What is the main method signature?", options: ["public static void main(String[] args)", "public void main()", "static void main()", "void main()"] },
+                { question: "What is encapsulation?", options: ["Data hiding", "Data binding", "Data abstraction", "Data inheritance"] },
+                { question: "Which is not a primitive data type?", options: ["String", "int", "boolean", "char"] }
+            ],
+            python: [
+                { question: "What is Python?", options: ["Interpreted language", "Compiled language", "Assembly language", "Machine language"] },
+                { question: "What is the correct file extension for Python files?", options: [".py", ".python", ".pyt", ".pt"] },
+                { question: "How do you create a variable in Python?", options: ["Just name and value", "var name = value", "variable name = value", "define name = value"] },
+                { question: "What is a lambda function?", options: ["Anonymous function", "Named function", "Built-in function", "Regular function"] },
+                { question: "Which is used to define a block of code?", options: ["Indentation", "Brackets", "Parentheses", "Semicolon"] }
+            ],
+            cpp: [
+    
+                {question: "What is C++?",options: ["Object-oriented programming language","Markup language","Database language","Scripting language"]},
+                {question: "Which operator is used for dynamic memory allocation in C++?",options: ["new","malloc","alloc","create"]},
+                {question: "What is the correct syntax for inheritance in C++?",options: ["class Child : public Parent","class Child extends Parent","class Child inherits Parent","class Child -> Parent"]},
+                {question: "What is encapsulation in C++?",options: ["Bundling data and methods that operate on that data within a single unit","Breaking down code into functions","Converting data types","Linking multiple files"]},
+                {question: "Which of the following is the correct way to declare a constant in C++?",options: ["const int MAX = 100;","constant int MAX = 100;","define MAX = 100;","final int MAX = 100;"]}
+            ],
+            
+            
+            
+    mysql: [
+        { question: "What is a primary key?", options: ["Unique identifier", "Foreign key", "Index", "Constraint"] },
+        { question: "Which command is used to create a database?", options: ["CREATE DATABASE", "MAKE DATABASE", "NEW DATABASE", "BUILD DATABASE"] },
+        { question: "What is JOIN used for?", options: ["Combine rows from tables", "Create table", "Delete records", "Update records"] },
+        { question: "What is ACID?", options: ["Database properties", "SQL command", "Data type", "Table type"] },
+        { question: "Which SQL command modifies data?", options: ["UPDATE", "SELECT", "SHOW", "DESCRIBE"] },
+        
+    ],
+    fullstack: [
+        { question: "What is REST?", options: ["Architectural style", "Programming language", "Database", "Framework"] },
+        { question: "What is middleware?", options: ["Software between client/server", "Frontend framework", "Database", "API"] },
+        { question: "What is CORS?", options: ["Cross-Origin Resource Sharing", "Cross-Origin Request System", "Client Origin Response System", "Client-Origin Request Sharing"] },
+        { question: "What is NPM?", options: ["Package manager", "JavaScript framework", "Database", "Server"] },
+        { question: "What is JWT?", options: ["JSON Web Token", "JavaScript Web Token", "Java Web Token", "JSON Web Type"] },
+        
+    ],
+    django: [
+        { question: "What is Django?", options: ["Web framework", "Database", "Programming language", "Server"] },
+        { question: "What is MTV in Django?", options: ["Model Template View", "Model Type View", "Main Template View", "Model Test View"] },
+        { question: "What is a migration?", options: ["Database schema changes", "File transfer", "Data backup", "Code deployment"] },
+        { question: "What is a queryset?", options: ["Database query collection", "Template type", "URL pattern", "View function"] },
+        { question: "What command runs Django server?", options: ["python manage.py runserver", "django start", "python server.py", "django run"] },
+        
+    ]
+        };
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        function showCourseContent(courseId) {
+            const coursesSection = document.getElementById('courses');
+            coursesSection.innerHTML = `
+                
+                <h2>${courseId.toUpperCase()} Course Content</h2>
+                <div class="video-grid">
+                    ${courseVideos[courseId].map(video => `
+                        <iframe width="100%" height="315" src="${video}" frameborder="0" allowfullscreen></iframe>
+                    `).join('')}
+                </div>
+            `;
+        }
+        
+        
+
+        function loadQuiz() {
+            const course = document.getElementById('quizSelector').value;
+            if (!course) return;
+
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = quizzes[course].map((q, i) => `
+                <div class="quiz-question">
+                    <p><strong>Q${i + 1}:</strong> ${q.question}</p>
+                    ${q.options.map(opt => `
+                        <div>
+                            <input type="radio" name="q${i}" value="${opt}">
+                            <label>${opt}</label>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('') + '<button onclick="submitQuiz()" class="submit-btn">Submit Quiz</button>';
+        }
+
+        function submitQuiz() {
+            const progress = Math.floor(Math.random() * 100);
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('progressStats').innerHTML = `
+                <p>Quiz Score: ${progress}%</p>
+                <p>Questions Attempted: 5/5</p>
+            `;
+            showSection('progress');
+        }
+
+
+        // Define correct answers for each quiz
+const correctAnswers = {
+    java: ["Java Virtual Machine", "extends", "public static void main(String[] args)", "Data hiding", "String"],
+    python: ["Interpreted language", ".py", "Just name and value", "Anonymous function", "Indentation"],
+    cpp:["Object-oriented programming language","new","class Child:public Parent","Bundling data and methods that operate on that data within a single unit","const int MAX = 100;"],
+    mysql: ["Unique identifier", "CREATE DATABASE", "Combine rows from tables", "Database properties", "UPDATE"],
+    fullstack: ["Architectural style", "Software between client/server", "Cross-Origin Resource Sharing", "Package manager", "JSON Web Token"],
+    django: ["Web framework", "Model Template View", "Database schema changes", "Database query collection", "python manage.py runserver"]
+};
+
+function submitQuiz() {
+    const course = document.getElementById('quizSelector').value;
+    const totalQuestions = quizzes[course].length;
+    let correctCount = 0;
+
+    // Check each question
+    for (let i = 0; i < totalQuestions; i++) {
+        const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`)?.value;
+        if (selectedAnswer === correctAnswers[course][i]) {
+            correctCount++;
+        }
+    }
+
+    // Calculate percentage
+    const progress = Math.round((correctCount / totalQuestions) * 100);
+    
+    // Update progress bar
+    document.getElementById('progressBar').style.width = `${progress}%`;
+    
+    // Update statistics
+    document.getElementById('progressStats').innerHTML = `
+        <p>Quiz Score: ${progress}%</p>
+        <p>Questions Correct: ${correctCount}/${totalQuestions}</p>
+        <p>Percentage: ${progress}%</p>
+        <button onclick="showQuizResults()" class="submit-btn">Show Detailed Results</button>
+    `;
+
+    // Show detailed results function
+    window.showQuizResults = function() {
+        const course = document.getElementById('quizSelector').value;
+        let resultsHTML = '<h3>Detailed Results:</h3>';
+        
+        for (let i = 0; i < totalQuestions; i++) {
+            const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`)?.value;
+            const isCorrect = selectedAnswer === correctAnswers[course][i];
+            
+            resultsHTML += `
+                <div class="quiz-question" style="border-left: 4px solid ${isCorrect ? '#4CAF50' : '#FF5722'}; padding-left: 10px; margin: 10px 0;">
+                    <p><strong>Question ${i + 1}:</strong> ${quizzes[course][i].question}</p>
+                    <p>Your Answer: ${selectedAnswer || 'Not answered'}</p>
+                    <p>Correct Answer: ${correctAnswers[course][i]}</p>
+                </div>
+            `;
+        }
+        
+        document.getElementById('progressStats').innerHTML += resultsHTML;
+    };
+
+    showSection('progress');
+}
+// Show home section by default
+showSection('home');
+    </script>
+    <footer>
+        <p>Contact: <br>
+        <a href="mailto:swarupa@gmail.com">swarupa@gmail.com</a></p>
+      </footer>
+    
+</body>
+</html>
